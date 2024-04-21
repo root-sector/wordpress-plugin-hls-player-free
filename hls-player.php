@@ -15,7 +15,7 @@ class HLSPlayer {
     private $plugin_version;
 
     public function __construct() {
-        $this->plugin_version = '1.0.2';
+        $this->plugin_version = '1.0.0';
 
         // Enqueue scripts and styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts_and_styles'));
@@ -34,8 +34,8 @@ class HLSPlayer {
 
     // Enqueue Video.js script and styles
     public function enqueue_scripts_and_styles() {
-        wp_enqueue_script('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video.min.js', array(), null, false);
-        wp_enqueue_style('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video-js.min.css');
+        wp_enqueue_script('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video.min.js', array(), $this->plugin_version, false);
+        wp_enqueue_style('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video-js.min.css', array(), $this->plugin_version);
     }
 
     // Returns the video element HTML code for the shortcode
