@@ -145,7 +145,7 @@ class HLSPlayer {
                 else document.addEventListener(\'DOMContentLoaded\', callback);
             };
             onReady(() => {
-                // Get the video source from the parameter
+                // Set the video source using the player.src method and reload the videojs player
                 let src = "' . $url . '";
                 let player = videojs(\'' . $video_id . '\');
                 // Set the video source using the player.src method
@@ -154,7 +154,6 @@ class HLSPlayer {
                 'type' => $type,
                 )) . ');
                 ';
-
         // Add remote text tracks for captions
         foreach ($captions_data as $caption) {
             $video_html .= '
@@ -167,10 +166,7 @@ class HLSPlayer {
                 }, false);
                 ';
         }
-
-        $video_html .= '
-                // Reload the videojs player / video part after setting the cookies in the browser
-                player.load();
+        $video_html .= 'player.load();
             });</script>';
 
         // Return the video element HTML code
