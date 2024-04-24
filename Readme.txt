@@ -9,29 +9,28 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
-Wordpress HLS Player is a video player plugin designed to seamlessly embed responsive/fluid or fixed-width HTTP Live Streaming (HLS) videos into WordPress posts and pages using the powerful Video.js player from videojs.com. Whether you're embedding locally hosted or externally hosted .m3u8 or .mpd HLS video files, this plugin makes the process effortless.
+HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
 
 == Description ==
 
-HLS Player Video Plugin, the ultimate solution for embedding HLS video content. Utilizing the robust Video.js player, this plugin offers a seamless integration of HLS videos, ensuring a top-notch viewing experience for your audience.
+HLS Player Video Plugin: Streamline your WordPress with the definitive HLS video embedding solution. Powered by the acclaimed Video.js player, this plugin guarantees an exceptional viewing experience.
 
 Key Features:
-* **Easy Embedding**: Place HLS video packages into posts, pages, or anywhere on your site.
-* **Mobile Responsive**: Enjoy a flawless user experience on mobile devices with responsive video design.
-* **Browser Compatibility**: Full HTML5 support for compatibility with all major web browsers.
-* **Video Posters**: Enhance your videos with attractive poster images.
-* **Automatic Playback**: Videos start playing automatically as the page loads.
-* **Fallback Support**: Use direct links to embed fallback videos from your WordPress media library.
-* **No Setup Hassle**: Install the plugin and start embedding without any complex setup.
-* **Lightweight Design**: A lightweight plugin that won't slow down your site.
-* **Sleek Player**: A clean and modern player interface with no watermark.
-* **HTML5 Fallback**: Supports other HTML5 file types like MP4, WebM, and Ogv for maximum flexibility.
-* **Captions and Subtitles**: Add captions and subtitles to your videos for improved accessibility and user experience.
-* **Multiple Language Support**: Provide captions in multiple languages to cater to a diverse audience.
+* **Effortless Integration**: Embed HLS videos anywhere on your site with ease.
+* **Adaptive Design**: Provides a seamless viewing experience on all devices.
+* **Universal Compatibility**: Ensures full HTML5 support across all browsers.
+* **Visual Appeal:** Customize with video posters for an engaging look.
+* **Instant Play**: Auto-playback for immediate engagement.
+* **Backup Options**: Embed fallback videos directly from your media library.
+* **Simple Installation**: Get started quickly without complex configurations.
+* **Performance-Focused**: Lightweight build for fast site performance.
+* **Modern Interface**: Enjoy a sleek, watermark-free video player.
+* **Versatile Playback**: Supports a range of HTML5 video formats.
+* **Accessibility Features**: Include captions and subtitles for a wider audience.
+* **Multilingual Support**: Offers captions in various languages.
+* **Designed for flexibility**, the WordPress HLS Player Plugin simplifies embedding both local and external .m3u8 or .mpd HLS files. It’s tailored for both responsive and fixed-width layouts, ensuring a straightforward embedding process.
 
-The WordPress HLS Player Plugin is designed for versatility, allowing you to embed both locally and externally hosted .m3u8 or .mpd HLS video files with ease. Whether you're aiming for a responsive layout or a fixed-width display, this plugin adapts to your needs, making the embedding process as effortless as possible.
-
-Experience the power of professional-grade video streaming on your WordPress site with the WordPress HLS Player Plugin.
+Elevate your WordPress site with the HLS Player Video Plugin – the pinnacle of professional-grade video streaming.
 
 = HLS Player Plugin Usage =
 
@@ -87,11 +86,23 @@ provide the lang in two character language code format. For example de-de, en-us
 
 == Get more advanced features with HLS Player PRO ==
 
-+ AWS Cloudfront signed cookies support: Secure your videos from unauthorized downloads.
-+ Step-by-step instructions for AWS Cloudfront setup: Easily configure signed cookies for added security.
-+ aMember and Wordpress user role support: Integrate with aMember and Wordpress for a membership subscription check. Restrict video access only for active subscribers.
-+ Google Tag Manager / Google Analytics support: Track video statistics - know what, when, and how long your videos are being played.
-+ BONUS: Step-by-step instructions on converting videos into .m3u8 streaming using Mac OS.
+AWS CloudFront Integration:
+=> Global low-latency content delivery network support.
+=> Secure videos with CloudFront Signed Cookies against unauthorized downloads.
+=> Easy setup with step-by-step instructions for configuring CloudFront and signed cookies.
+
+Subscription Management:
+=> Seamlessly integrate aMember and Wordpress roles for membership subscription management.
+=> Restrict video access to active subscribers only.
+
+Analytics Integration:
+=> Google Tag Manager and Google Analytics support.
+=> Track comprehensive video statistics, including playback duration and timing.
+
+Streaming Optimization:
+=> Convert .mp4 videos into .m3u8 streaming format effortlessly on Windows or macOS.
+=> Converting and AWS S3 Upload script for Windows and macOS is also included.
+=> Detailed step-by-step configuration and converting guides included.
 
 [Check out HLS Player PRO >](https://hls-player-pro.root-sector.com/)
 
