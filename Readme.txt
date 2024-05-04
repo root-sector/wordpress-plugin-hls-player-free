@@ -115,5 +115,8 @@ Streaming Optimization:
 
 == Changelog ==
 
+= 1.0.1 =
+* Added: vjs-fluid class as default to adjust player size automatically.
+
 = 1.0.0 =
 * Initial release

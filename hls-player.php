@@ -3,7 +3,7 @@
  * Plugin Name: HLS Player
  * Plugin URI: https://github.com/root-sector/wordpress-plugin-hls-player-free
  * Description: HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author: Root Sector Ltd. & Co. KG
@@ -15,7 +15,7 @@ class HLSPlayer {
     private $plugin_version;
 
     public function __construct() {
-        $this->plugin_version = '1.0.0';
+        $this->plugin_version = '1.0.1';
 
         // Enqueue scripts and styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts_and_styles'));
@@ -64,7 +64,7 @@ class HLSPlayer {
 
         // Define custom css classes for videojs player
         if (!empty($atts['class'])) $class = $atts['class'];
-        else $class = 'video-js';
+        else $class = 'video-js vjs-fluid';
 
         // Controls
         if ($atts['controls'] == 'false') $controls = '';
