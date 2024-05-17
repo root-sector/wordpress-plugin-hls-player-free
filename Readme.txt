@@ -117,6 +117,8 @@ Streaming Optimization:
 
 = 1.0.1 =
 * Added: vjs-fluid class as default to adjust player size automatically.
+* Improved: Removed CDN for video.js css and js file
+* Improved: Prevent direct module access.
 
 = 1.0.0 =
-* Initial release
+* Released: Initial version of the software.

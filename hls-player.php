@@ -11,6 +11,11 @@
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 class HLSPlayer {
     private $plugin_version;
 
@@ -34,8 +39,8 @@ class HLSPlayer {
 
     // Enqueue Video.js script and styles
     public function enqueue_scripts_and_styles() {
-        wp_enqueue_script('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video.min.js', array(), $this->plugin_version, false);
-        wp_enqueue_style('hlsplayer', 'https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video-js.min.css', array(), $this->plugin_version);
+        wp_enqueue_script('hlsplayer', plugins_url('public/js/video.min.js', __FILE__), array(), $this->plugin_version, false);
+        wp_enqueue_style('hlsplayer', plugins_url('public/css/video-js.min.css', __FILE__), array(), $this->plugin_version);
     }
 
     // Returns the video element HTML code for the shortcode
