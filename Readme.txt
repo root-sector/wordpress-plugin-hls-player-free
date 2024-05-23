@@ -5,7 +5,7 @@ Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.5.2
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -114,6 +114,10 @@ Streaming Optimization:
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.2 =
+* Changed: Updated dependencies to newer versions for improved performance and security.
+* Changed: Refactoring the hls_player_shortcode function to pass data to the JavaScript code.
+* Changed: Moving the JavaScript code to a separate file for better organization.
 
 = 1.0.1 =
 * Added: vjs-fluid class as default to adjust player size automatically.
