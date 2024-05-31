@@ -8,6 +8,7 @@ on:
 
 jobs:
   wordpressreleaser:
+    name: Deploy to WP.org
     runs-on: ubuntu-latest
     environment: production
     steps:
