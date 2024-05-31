@@ -28,9 +28,11 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SLUG: hls-player
 
+      - name: Rename Zip File
+        run: mv ${{ steps.deploy.outputs.zip-path }} hls-player-${{ github.ref_name }}.zip
+
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ steps.deploy.outputs.zip-path }}
-          name: hls-player-v${{ github.ref_name }}.zip
+          artifacts: hls-player-v${{ github.ref_name }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
