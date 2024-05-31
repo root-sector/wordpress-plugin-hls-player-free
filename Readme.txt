@@ -1,6 +1,6 @@
 === HLS Player ===
 Contributors: r00tsector
-Tags: video player, hls, streaming, videojs, video embedding, hls video, m3u8, mpd
+Tags: video player, hls, streaming, videojs, video embedding
 Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.5.2
@@ -9,7 +9,7 @@ Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
-HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
+HLS Player is a lightweight HTTP Live Streaming player for WordPress, using video.js for easy embedding HLS videos into posts and pages.
 
 == Description ==
 
