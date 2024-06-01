@@ -47,10 +47,10 @@ The shortcode supports the following options:
 * **class**: Define the Video.js player's CSS class (Default: video-js). Additional classes listed at https://videojs.com/guides/layout/#classes
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" class="video-js vjs-fluid vjs-16-9"]`
 
-* **width**: Defines the width of the video file.
+* **width**: Defines the width of the video player.
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" width="480"]`
 
-* **height**: Defines the height of the video file.
+* **height**: Defines the height of the video player.
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" height="264"]`
 
 * **controls**: Specify whether video controls should be displayed (Default: "true"). Use "false" to hide controls.
@@ -65,7 +65,7 @@ When you disable controls, users will not be able to interact with your videos. 
 * **autoplay**: Cause the video to play automatically when the page loads.
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" autoplay="true"]`
 
-* **loop**: Make the video loop to the beginning when finished and automatically continue playing.
+* **loop**: Set the video to automatically loop back to the beginning and continue playing after it finishes.
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" loop="true"]`
 
 * **poster**: Define an image as a placeholder before the video plays.
