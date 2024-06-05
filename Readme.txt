@@ -3,9 +3,9 @@ Contributors: r00tsector
 Tags: video player, hls, streaming, videojs, video embedding
 Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
-Tested up to: 6.5.3
+Tested up to: 6.5.4
 Requires PHP: 8.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -114,6 +114,12 @@ Streaming Optimization:
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.4=
+* Added: Wordpress v6.5.4 compatibility.
+
+= 1.0.3 =
+* Improved: Minor changes.
+
 = 1.0.2 =
 * Improved: Minor changes.
 
