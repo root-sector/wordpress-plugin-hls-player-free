@@ -5,7 +5,7 @@ Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.5.4
 Requires PHP: 8.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -108,10 +108,13 @@ Streaming Optimization:
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
-= 1.0.5=
+= 1.0.6 =
+* Improved: Compatibility for multiple themes and plugins.
+
+= 1.0.5 =
 * Added: Support for multiple video players on one post/page.
 
-= 1.0.4=
+= 1.0.4 =
 * Added: Wordpress v6.5.4 compatibility.
 
 = 1.0.3 =

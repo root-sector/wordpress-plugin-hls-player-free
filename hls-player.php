@@ -3,7 +3,7 @@
  * Plugin Name: HLS Player
  * Plugin URI: https://github.com/root-sector/wordpress-plugin-hls-player-free
  * Description: HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author: Root Sector Ltd. & Co. KG
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('HLS_PLAYER_VERSION', '1.0.5');
+define('HLS_PLAYER_VERSION', '1.0.6');
 
 class HLSPlayer
 {
@@ -38,9 +38,6 @@ class HLSPlayer
         add_filter('widget_text', 'do_shortcode');
         add_filter('the_excerpt', 'do_shortcode', 11);
         add_filter('the_content', 'do_shortcode', 11);
-
-        // Add script localization for video instances
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_hls_player_script'));
     }
 
     // Enqueue Video.js script and styles
@@ -49,14 +46,6 @@ class HLSPlayer
         if (!is_admin()) {
             wp_enqueue_script('videojs', plugins_url('public/js/video.min.js', __FILE__), array(), $this->plugin_version, false);
             wp_enqueue_style('videojs', plugins_url('public/css/video-js.min.css', __FILE__), array(), $this->plugin_version);
-        }
-    }
-
-    public function enqueue_hls_player_script()
-    {
-        if (!is_admin() && isset($GLOBALS['hlsPlayerData']) && !empty($GLOBALS['hlsPlayerData'])) {
-            wp_enqueue_script('hls-player-script', plugins_url('public/js/hls-player.min.js', __FILE__), array('videojs'), $this->plugin_version, true);
-            wp_localize_script('hls-player-script', 'hlsPlayerData', $GLOBALS['hlsPlayerData']);
         }
     }
 
@@ -82,7 +71,7 @@ class HLSPlayer
         );
 
         // Generate a unique id for the video element
-        $video_id = uniqid('video-');
+        $video_id = uniqid('video_');
 
         // Define custom css classes for videojs player
         $class = !empty($atts['class']) ? $atts['class'] : 'video-js vjs-fluid';
@@ -155,17 +144,17 @@ class HLSPlayer
 
         $script_data = array(
             'video_id' => $video_id,
-            'src' => $url,
+            'src' => esc_url_raw($url),
             'type' => $type,
             'captions_data' => $captions_data,
         );
 
-        if (!isset($GLOBALS['hlsPlayerData'])) {
-            $GLOBALS['hlsPlayerData'] = array();
-        }
-        $GLOBALS['hlsPlayerData'][] = $script_data;
+        $encoded_data = base64_encode(json_encode($script_data));
+        $inline_script = "var hlsPlayerData_{$video_id} = '{$encoded_data}';";
 
-        wp_enqueue_script('hls-player-script', plugins_url('public/js/hls-player.js', __FILE__), array('videojs'), $this->plugin_version, true);
+        // Enqueue the main script and add the inline script
+        wp_enqueue_script('hls-player-script', plugins_url('public/js/hls-player.min.js', __FILE__), array('videojs'), $this->plugin_version, true);
+        wp_add_inline_script('hls-player-script', $inline_script);
 
         return $video_html;
     }

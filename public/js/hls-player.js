@@ -7,27 +7,37 @@
   };
 
   onReady(() => {
-    hlsPlayerData.forEach((playerData) => {
-      let player = videojs(playerData.video_id);
-      player.src({
-        src: playerData.src,
-        type: playerData.type,
-      });
+    $("video.video-js").each(function () {
+      var videoId = $(this).attr("id");
+      var localizedName = "hlsPlayerData_" + videoId;
 
-      playerData.captions_data.forEach((caption) => {
-        player.addRemoteTextTrack(
-          {
-            kind: "subtitles",
-            src: caption.src,
-            srclang: caption.srclang,
-            label: caption.label,
-            default: caption.default,
-          },
-          false
-        );
-      });
+      if (typeof window[localizedName] !== "undefined") {
+        // Decode base64-encoded data
+        let playerData = JSON.parse(atob(window[localizedName]));
 
-      player.load();
+        let player = videojs(playerData.video_id);
+        player.src({
+          src: playerData.src,
+          type: playerData.type,
+        });
+
+        playerData.captions_data.forEach((caption) => {
+          player.addRemoteTextTrack(
+            {
+              kind: "subtitles",
+              src: caption.src,
+              srclang: caption.srclang,
+              label: caption.label,
+              default: caption.default,
+            },
+            false
+          );
+        });
+
+        player.load();
+      } else {
+        console.log("No localized data found for " + localizedName);
+      }
     });
   });
 })(jQuery);
