@@ -7,25 +7,27 @@
   };
 
   onReady(() => {
-    let player = videojs(hlsPlayerData.video_id);
-    player.src({
-      src: hlsPlayerData.src,
-      type: hlsPlayerData.type,
-    });
+    hlsPlayerData.forEach((playerData) => {
+      let player = videojs(playerData.video_id);
+      player.src({
+        src: playerData.src,
+        type: playerData.type,
+      });
 
-    hlsPlayerData.captions_data.forEach((caption) => {
-      player.addRemoteTextTrack(
-        {
-          kind: "subtitles",
-          src: caption.src,
-          srclang: caption.srclang,
-          label: caption.label,
-          default: caption.default,
-        },
-        false
-      );
-    });
+      playerData.captions_data.forEach((caption) => {
+        player.addRemoteTextTrack(
+          {
+            kind: "subtitles",
+            src: caption.src,
+            srclang: caption.srclang,
+            label: caption.label,
+            default: caption.default,
+          },
+          false
+        );
+      });
 
-    player.load();
+      player.load();
+    });
   });
 })(jQuery);

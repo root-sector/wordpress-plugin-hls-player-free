@@ -5,7 +5,7 @@ Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.5.4
 Requires PHP: 8.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -74,12 +74,6 @@ When you disable controls, users will not be able to interact with your videos. 
 * **muted**: Specify that the audio output of the video should be muted.
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" muted="true"]`
 
-* **withcredentials**: Disable withCredentials for a single video. The value for this parameter is true by default.
-`[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" withcredentials="false"]`
-
-* **protected**: Disable check active subscription protection for this single video. The value for this parameter is true by default.
-`[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" protected="false"]`
-
 * **captions**: Add captions or subtitles to the video in multiple languages. Provide the captions in the format: `"path/to/captions1.vtt|lang1|label1|default,path/to/captions2.vtt|lang2|label2"`.
 provide the lang in two character language code format. For example de-de, en-us
 `[hls_player url="https://example.com/external/xxxxxxxxx.m3u8" captions="path/to/captions-en.vtt|en-EN|English,path/to/captions-es.vtt|en-us|English|default"]`
@@ -114,6 +108,9 @@ Streaming Optimization:
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.5=
+* Added: Support for multiple video players on one post/page.
+
 = 1.0.4=
 * Added: Wordpress v6.5.4 compatibility.
 
