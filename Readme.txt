@@ -5,7 +5,7 @@ Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.5.4
 Requires PHP: 8.1
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -108,6 +108,9 @@ Streaming Optimization:
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.7 =
+* Fixed: Include required jquery component for the player
+
 = 1.0.6 =
 * Improved: Compatibility for multiple themes and plugins.
 
