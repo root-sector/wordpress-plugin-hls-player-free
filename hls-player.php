@@ -3,7 +3,7 @@
  * Plugin Name: HLS Player
  * Plugin URI: https://github.com/root-sector/wordpress-plugin-hls-player-free
  * Description: HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author: Root Sector Ltd. & Co. KG
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('HLS_PLAYER_VERSION', '1.0.7');
+define('HLS_PLAYER_VERSION', '1.0.8');
 
 class HLSPlayer
 {
@@ -28,10 +28,6 @@ class HLSPlayer
 
         // Enqueue scripts and styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts_and_styles'));
-
-        // AJAX actions
-        add_action('wp_ajax_sign_cookie_policy', array($this, 'process_video_signing_request'));
-        add_action('wp_ajax_nopriv_sign_cookie_policy', array($this, 'process_video_signing_request'));
 
         // Shortcodes and filters
         add_shortcode('hls_player', array($this, 'hls_player_shortcode'));
@@ -46,75 +42,66 @@ class HLSPlayer
         if (!is_admin()) {
             wp_enqueue_script('videojs', plugins_url('public/js/video.min.js', __FILE__), array(), $this->plugin_version, false);
             wp_enqueue_style('videojs', plugins_url('public/css/video-js.min.css', __FILE__), array(), $this->plugin_version);
-            wp_enqueue_script('jquery');
         }
     }
 
     public function hls_player_shortcode($atts)
     {
-        // Parse the attributes and set the default value for url
-        $atts = shortcode_atts(
-            array(
-                'url' => '',
-                'class' => '',
-                'width' => '',
-                'height' => '',
-                'controls' => '',
-                'preload' => 'auto',
-                'autoplay' => 'false',
-                'loop' => '',
-                'muted' => '',
-                'poster' => '',
-                'captions' => '',
-            ),
-            $atts,
-            'videojs_hls'
+        // Prevent parsing of the shortcode if admin
+        if (is_admin()) {
+            return;
+        }
+        // Define shortcode attributes with defaults
+        $default_atts = array(
+            'url' => '',
+            'class' => '',
+            'width' => '',
+            'height' => '',
+            'controls' => '',
+            'preload' => 'auto',
+            'autoplay' => 'false',
+            'loop' => '',
+            'muted' => '',
+            'poster' => '',
+            'captions' => '',
+            'videojs_custom_options_json' => '{}',
         );
+
+        // Parse shortcode attributes
+        $atts = shortcode_atts($default_atts, $atts, 'videojs_hls');
 
         // Generate a unique id for the video element
         $video_id = uniqid('video_');
 
-        // Define custom css classes for videojs player
+        // Generate video tag attributes
         $class = !empty($atts['class']) ? $atts['class'] : 'video-js vjs-fluid';
-
-        // Controls
         $controls = $atts['controls'] == 'false' ? '' : ' controls';
-
-        // Preload
         $preload = $atts['preload'] == 'metadata' ? ' preload="metadata"' : ($atts['preload'] == 'none' ? ' preload="none"' : ' preload="auto"');
-
-        // Autoplay
         $autoplay = $atts['autoplay'] == 'true' ? ' autoplay' : '';
-
-        // Loop
         $loop = $atts['loop'] == 'true' ? ' loop' : '';
-
-        // Muted
         $muted = $atts['muted'] == 'true' ? ' muted' : '';
-
-        // Poster
         $poster = !empty($atts['poster']) ? ' poster="' . $atts['poster'] . '"' : '';
+
+        $type = ''; // Initialize with empty type
 
         // Extract the url attribute
         $url = $atts['url'];
-
-        // Check the file extension of the url
-        $fileparts = pathinfo($url);
-        $extension = $fileparts['extension'];
-
-        // Set the type attribute according to the file extension
-        switch ($extension) {
-            case 'm3u8':
-                $type = 'application/x-mpegURL';
-                break;
-            case 'mpd':
-                $type = 'application/dash+xml';
-                break;
-            case 'mp4':
-                $type = 'video/mp4';
-                break;
-            default:
-                $type = '';
+        if (!empty($url)) {
+            $fileparts = pathinfo($url);
+            $extension = $fileparts['extension'];
+            switch ($extension) {
+                case 'm3u8':
+                    $type = 'application/x-mpegURL';
+                    break;
+                case 'mpd':
+                    $type = 'application/dash+xml';
+                    break;
+                case 'mp4':
+                    $type = 'video/mp4';
+                    break;
+                default:
+                    $type = '';
+            }
         }
 
         // Extract the captions attribute
@@ -148,6 +135,7 @@ class HLSPlayer
             'src' => esc_url_raw($url),
             'type' => $type,
             'captions_data' => $captions_data,
+            'videojs_custom_options_json' => $atts['videojs_custom_options_json'],
         );
 
         $encoded_data = base64_encode(json_encode($script_data));
