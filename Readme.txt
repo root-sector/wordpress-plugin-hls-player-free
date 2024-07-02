@@ -97,24 +97,24 @@ or
 
 == Get more advanced features with HLS Player PRO ==
 
-=== **AWS CloudFront Integration** ===
+=== AWS CloudFront Integration ===
 **=> Global Reach**: Utilize the expansive AWS CloudFront network for low-latency streaming across the globe.
 **=> Enhanced Security**: Protect your content with CloudFront Signed Cookies, ensuring that only authorized viewers can access your videos. This feature is particularly useful for preventing unauthorized sharing and downloads, as it ties the video access to specific, signed cookies that are difficult to replicate or redistribute.
 **=> Simplified Configuration**: Follow our easy-to-understand instructions to set up CloudFront and implement signed cookies, making your videos secure and your setup hassle-free.
 
-=== **AWS Kinesis Video Streams Integration** ===
+=== AWS Kinesis Video Streams Integration ===
 **=> Flexible Streaming**: Leverage AWS Kinesis Video Streams for both live and on-demand video streaming.
 **=> Direct Downloads**: Enable users to download clips directly from the player, enhancing the viewer experience.
 
-=== **Subscription Management** ===
+=== Subscription Management ===
 **=> Integrated Solution**: Combine aMember and WordPress roles for efficient subscription management.
 **=> Exclusive Content**: Offer videos exclusively to active subscribers, adding value to your membership packages.
 
-=== **Analytics Integration** ===
+=== Analytics Integration ===
 **=> In-depth Tracking**: Support for Google Tag Manager and Google Analytics allows you to monitor detailed video statistics.
 **=> Viewer Insights**: Gain insights into playback duration and user engagement, helping you to optimize your content strategy.
 
-=== **Streaming Optimization** ===
+=== Streaming Optimization ===
 **=> Effortless Conversion**: Transform .mp4 files into the .m3u8 format with ease, using our tools for Windows or macOS.
 **=> Comprehensive Guides**: Benefit from our in-depth guides for video file conversion, AWS S3 and CloudFront configuration and AWS Kinesis Video Stream integration, ensuring a smooth setup process.
 
