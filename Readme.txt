@@ -3,9 +3,9 @@ Contributors: r00tsector
 Tags: video player, hls, streaming, videojs, video embedding
 Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
-Tested up to: 6.5.5
+Tested up to: 6.6
 Requires PHP: 8.1
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -128,6 +128,9 @@ or
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.9 =
+* Added: Wordpress v6.6 compatibility
+
 = 1.0.8 =
 * Added: videojs_custom_options_json shortcode
 * Removed: jquery is no longer required
@@ -136,29 +139,29 @@ or
 * Fixed: Include required jquery component for the player
 
 = 1.0.6 =
-* Improved: Compatibility for multiple themes and plugins.
+* Improved: Compatibility for multiple themes and plugins
 
 = 1.0.5 =
-* Added: Support for multiple video players on one post/page.
+* Added: Support for multiple video players on one post/page
 
 = 1.0.4 =
-* Added: Wordpress v6.5.4 compatibility.
+* Added: Wordpress v6.5.4 compatibility
 
 = 1.0.3 =
-* Improved: Minor changes.
+* Improved: Minor changes
 
 = 1.0.2 =
-* Improved: Minor changes.
+* Improved: Minor changes
 
 = 1.0.2 =
-* Changed: Updated dependencies to newer versions for improved performance and security.
-* Changed: Refactoring the hls_player_shortcode function to pass data to the JavaScript code.
-* Changed: Moving the JavaScript code to a separate file for better organization.
+* Changed: Updated dependencies to newer versions for improved performance and security
+* Changed: Refactoring the hls_player_shortcode function to pass data to the JavaScript code
+* Changed: Moving the JavaScript code to a separate file for better organization
 
 = 1.0.1 =
-* Added: vjs-fluid class as default to adjust player size automatically.
+* Added: vjs-fluid class as default to adjust player size automatically
 * Improved: Removed CDN for video.js css and js file
-* Improved: Prevent direct module access.
+* Improved: Prevent direct module access
 
 = 1.0.0 =
-* Released: Initial version of the software.
+* Released: Initial version of the software
