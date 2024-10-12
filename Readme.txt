@@ -5,7 +5,7 @@ Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 8.1
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -82,10 +82,16 @@ Specify the "url" parameter with the location of the HLS video package file. Sup
 
 `[hls_player url="https://example.com/path/to/video_playlist.m3u8" muted="true"]`
 
-**captions**: Add captions or subtitles to the video in multiple languages. Provide the captions in the format: `"path/to/captions1.vtt|lang1|label1|default,path/to/captions2.vtt|lang2|label2"`.
-provide the lang in two character language code format. For example de-de, en-us
+**captions**: Add captions or subtitles to the video in multiple languages. Provide the captions in the format:
 
-`[hls_player url="https://example.com/path/to/video_playlist.m3u8" captions="path/to/captions-en.vtt|en-EN|English,path/to/captions-es.vtt|en-us|English|default"]`
+`"path/to/captions1.vtt|lang1|label1|default,path/to/captions2.vtt|lang2|label2"`
+
+path/to/captions: The URL or path to the VTT file containing the subtitles.
+lang: The two-character language code, followed by a hyphen and an optional country code (e.g., en, de, en-US, de-DE).
+label: A user-friendly label for the caption (e.g., "English", "German").
+default: (Optional) Use this keyword to specify which caption should be enabled by default when the video is loaded.
+
+`[hls_player url="https://example.com/path/to/video_playlist.m3u8" captions="https://example.com/path/to/captions-en.vtt|en-EN|English|default,https://example.com/path/topath/to/captions-de.vtt|de-de|German"]`
 
 **videojs_custom_options_json**: JSON format string for custom options (https://videojs.com/guides/options/) for the video.js player.
 
@@ -128,6 +134,9 @@ or
 4. Click `Install Now` and then activate the plugin.
 
 == Changelog ==
+= 1.0.10 =
+* Fixed: Improved captions functionality in the shortcode to clarify language codes and default settings for better user experience.
+
 = 1.0.9 =
 * Added: Wordpress v6.6 compatibility
 

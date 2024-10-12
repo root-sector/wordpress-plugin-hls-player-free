@@ -31,6 +31,9 @@
           type: playerData.type,
         });
 
+        // Track if a default caption exists
+        let defaultCaptionExists = false;
+
         playerData.captions_data.forEach((caption) => {
           player.addRemoteTextTrack(
             {
@@ -38,11 +41,22 @@
               src: caption.src,
               srclang: caption.srclang,
               label: caption.label,
-              default: caption.default,
+              default: caption.default === 'true',
             },
             false
           );
+          if (caption.default === 'true') {
+            defaultCaptionExists = true;
+          }
         });
+
+        // If no default caption, disable captions by default
+        if (!defaultCaptionExists) {
+          const tracks = player.textTracks();
+          for (let i = 0; i < tracks.length; i++) {
+            tracks[i].mode = 'disabled';
+          }
+        }
 
         player.load();
       } else {
