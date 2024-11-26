@@ -3,7 +3,7 @@
  * Plugin Name: HLS Player
  * Plugin URI: https://github.com/root-sector/wordpress-plugin-hls-player-free
  * Description: HLS Player is a simple, lightweight HTTP Live Streaming player for WordPress. Leveraging video.js, the leading open-source HTML5 player, it enables effortless embedding of both responsive and fixed-width .m3u8 or .mpd HLS videos into posts and pages.
- * Version: 1.0.10
+ * Version: 1.0.11
  * Requires at least: 6.4
  * Requires PHP: 8.1
  * Author: Root Sector Ltd. & Co. KG
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('HLS_PLAYER_VERSION', '1.0.10');
+define('HLS_PLAYER_VERSION', '1.0.11');
 
 class HLSPlayer
 {
@@ -51,10 +51,11 @@ class HLSPlayer
         if (is_admin()) {
             return;
         }
-        // Define shortcode attributes with defaults
-        $default_atts = array(
+
+        // Define allowed shortcode attributes with defaults
+        $allowed_atts = array(
             'url' => '',
-            'class' => '',
+            'class' => 'video-js vjs-fluid',
             'width' => '',
             'height' => '',
             'controls' => '',
@@ -64,23 +65,30 @@ class HLSPlayer
             'muted' => '',
             'poster' => '',
             'captions' => '',
+            'protected' => 'false',
+            'withcredentials' => 'false',
+            'kinesis_video_stream' => 'false',
+            'cloudfront_signed_cookies' => 'false',
             'videojs_custom_options_json' => '{}',
         );
 
-        // Parse shortcode attributes
-        $atts = shortcode_atts($default_atts, $atts, 'videojs_hls');
+        // Only use attributes that are explicitly defined in allowed_atts
+        $filtered_atts = is_array($atts) ? array_intersect_key($atts, $allowed_atts) : array();
+        
+        // Parse shortcode attributes with our filtered attributes
+        $atts = shortcode_atts($allowed_atts, $filtered_atts, 'videojs_hls');
 
         // Generate a unique id for the video element
         $video_id = uniqid('video_');
 
         // Generate video tag attributes
-        $class = !empty($atts['class']) ? $atts['class'] : 'video-js vjs-fluid';
+        $class = !empty($atts['class']) ? esc_attr($atts['class']) : 'video-js vjs-fluid';
         $controls = $atts['controls'] == 'false' ? '' : ' controls';
         $preload = $atts['preload'] == 'metadata' ? ' preload="metadata"' : ($atts['preload'] == 'none' ? ' preload="none"' : ' preload="auto"');
         $autoplay = $atts['autoplay'] == 'true' ? ' autoplay' : '';
         $loop = $atts['loop'] == 'true' ? ' loop' : '';
         $muted = $atts['muted'] == 'true' ? ' muted' : '';
-        $poster = !empty($atts['poster']) ? ' poster="' . $atts['poster'] . '"' : '';
+        $poster = !empty($atts['poster']) ? ' poster="' . esc_url($atts['poster']) . '"' : '';
 
         $type = ''; // Initialize with empty type
 
@@ -124,11 +132,19 @@ class HLSPlayer
             }
         }
 
-        $video_html = '
-        <div style="position: relative;">
-            <video id="' . $video_id . '" class="' . $class . '" ' . $controls . $preload . $autoplay . $loop . $muted . $poster . ' width="' . $atts['width'] . '" height="' . $atts['height'] . '">
-            </video>
-        </div>';
+        $video_html = sprintf(
+            '<div style="position: relative;"><video id="%s" class="%s"%s%s%s%s%s%s%s%s></video></div>',
+            esc_attr($video_id),
+            $class,
+            $controls,
+            $preload,
+            $autoplay,
+            $loop,
+            $muted,
+            $poster,
+            !empty($atts['width']) ? ' width="' . esc_attr($atts['width']) . '"' : '',
+            !empty($atts['height']) ? ' height="' . esc_attr($atts['height']) . '"' : ''
+        );
 
         $script_data = array(
             'video_id' => $video_id,
@@ -139,7 +155,7 @@ class HLSPlayer
         );
 
         $encoded_data = base64_encode(json_encode($script_data));
-        $inline_script = "var hlsPlayerData_{$video_id} = '{$encoded_data}';";
+        $inline_script = "var hlsPlayerData_{$video_id} = '" . esc_js($encoded_data) . "';";
 
         // Enqueue the main script and add the inline script
         wp_enqueue_script('hls-player-script', plugins_url('public/js/hls-player.min.js', __FILE__), array('videojs'), $this->plugin_version, true);

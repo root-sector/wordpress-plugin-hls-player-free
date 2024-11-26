@@ -3,9 +3,9 @@ Contributors: r00tsector
 Tags: video player, hls, streaming, videojs, video embedding
 Donate link: https://donate.stripe.com/5kA7w2bRl3KN7qU3cd
 Requires at least: 6.4
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
